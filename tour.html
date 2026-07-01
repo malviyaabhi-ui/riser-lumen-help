@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quick Tour — Riser Lumen</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#f9fafb;color:#111827}
+
+/* TOP BAR */
+.topbar{background:#0D2B6B;padding:0 48px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.topbar-logo .mark{width:28px;height:28px;background:#00A4A4;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topbar-logo span{font-size:14px;font-weight:700;color:white}
+.topbar-back{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;font-weight:500;transition:color .15s}
+.topbar-back:hover{color:white}
+.topbar-progress{display:flex;align-items:center;gap:6px}
+.progress-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .3s}
+.progress-dot.done{background:#00A4A4}
+.progress-dot.active{background:white}
+
+/* HERO */
+.tour-hero{background:#0D2B6B;padding:40px 48px 48px;text-align:center}
+.tour-hero h1{font-size:32px;font-weight:800;color:white;margin-bottom:8px}
+.tour-hero p{font-size:15px;color:rgba(255,255,255,0.5);max-width:500px;margin:0 auto}
+
+/* STEPS */
+.steps-wrap{max-width:1000px;margin:0 auto;padding:0 48px 80px}
+
+.step-block{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:64px 0;border-bottom:1px solid #e5e7eb;opacity:0;transform:translateY(28px);transition:opacity .5s ease,transform .5s ease}
+.step-block.vis{opacity:1;transform:translateY(0)}
+.step-block:last-child{border-bottom:none}
+
+/* Left: text */
+.step-num{font-size:10px;font-weight:700;color:#00A4A4;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.step-title{font-size:24px;font-weight:800;color:#0D2B6B;margin-bottom:12px;line-height:1.2}
+.step-desc{font-size:15px;color:#374151;line-height:1.7;margin-bottom:16px}
+.step-tip{font-size:13px;color:#065f46;background:#ecfdf5;border-left:3px solid #00A4A4;border-radius:0 8px 8px 0;padding:10px 14px;line-height:1.6}
+
+/* Right: mockup */
+.mockup{background:white;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.07)}
+.mock-bar{background:#0D2B6B;padding:10px 14px;display:flex;align-items:center;gap:6px}
+.mock-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2)}
+.mock-url{font-size:10px;color:rgba(255,255,255,0.45);margin-left:6px}
+.mock-body{padding:16px}
+.mock-label{font-size:10px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px}
+.mock-val{font-size:13px;color:#111827;font-weight:500}
+.mock-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.mock-row .mock-label{width:90px;flex-shrink:0;margin-bottom:0}
+.badge{font-size:10px;padding:3px 10px;border-radius:99px;font-weight:600}
+.badge-green{background:#dcfce7;color:#166534}
+.badge-blue{background:#dbeafe;color:#1e40af}
+.badge-gray{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}
+.mock-input{width:100%;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;font-size:13px;color:#111827;margin-bottom:8px;font-family:'DM Sans',sans-serif;background:#f9fafb}
+.mock-btn{display:block;text-align:center;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;margin-top:4px;cursor:default}
+.btn-navy{background:#0D2B6B;color:white}
+.btn-teal{background:#00A4A4;color:white}
+.mock-code{font-size:28px;font-weight:800;color:#0D2B6B;letter-spacing:10px;text-align:center;padding:18px;background:#f0f4ff;border-radius:10px;margin:8px 0;border:2px dashed #c7d4f7}
+.mock-screens{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.mock-screen{border:1px solid #e5e7eb;border-radius:8px;padding:10px;background:#f9fafb}
+.mock-screen-name{font-size:10px;font-weight:600;color:#0D2B6B;margin-bottom:4px}
+.mock-screen-status{display:flex;align-items:center;gap:4px;font-size:9px}
+.sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sdot-green{background:#22c55e}
+.sdot-gray{background:#d1d5db}
+.mock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.mock-file{border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;background:#f9fafb}
+.mock-file-thumb{height:46px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.7)}
+.mock-file-name{font-size:9px;color:#6b7280;padding:5px 7px}
+.mock-file-upload{border:1px dashed #d1d5db;border-radius:6px;height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#9ca3af;font-size:10px}
+.mock-playlist{border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:8px}
+.mock-pl-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #f3f4f6;font-size:11px;color:#374151}
+.mock-pl-row:last-child{border-bottom:none}
+.mock-pl-thumb{width:24px;height:16px;background:#e5e7eb;border-radius:3px;flex-shrink:0}
+.mock-pl-dur{margin-left:auto;font-size:10px;color:#9ca3af}
+.mock-schedule{display:flex;flex-direction:column;gap:0}
+.mock-sched-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:11px}
+.mock-sched-row:last-child{border-bottom:none}
+.mock-sched-time{color:#6b7280;font-size:10px;width:80px;flex-shrink:0}
+.mock-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.mock-kpi{background:#f9fafb;border-radius:8px;padding:10px;text-align:center;border:1px solid #e5e7eb}
+.mock-kpi-val{font-size:20px;font-weight:700;color:#0D2B6B}
+.mock-kpi-lbl{font-size:9px;color:#6b7280;margin-top:2px}
+.live-bar{display:flex;align-items:center;gap:8px;background:#dcfce7;border-radius:8px;padding:10px 14px;margin-bottom:12px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+.live-text{font-size:12px;color:#166534;font-weight:600}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* NAV BUTTONS */
+.step-nav{display:flex;gap:8px;margin-top:24px}
+.nav-btn{padding:9px 20px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
+.nav-next{background:#0D2B6B;color:white}
+.nav-prev{background:white;color:#0D2B6B;border:1px solid #e5e7eb}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<nav class="topbar">
+  <a class="topbar-logo" href="index.html">
+    <div class="mark">
+      <svg width="16" height="16" viewBox="0 0 36 36" fill="none">
+        <path d="M9 25L18 11L27 25" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 20.5H23" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span>Riser Lumen</span>
+  </a>
+  <div class="topbar-progress" id="progress-dots"></div>
+  <a class="topbar-back" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Help Centre
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="tour-hero">
+  <h1>Quick Tour</h1>
+  <p>How Riser Lumen works — from login to live screens in 8 steps</p>
+</div>
+
+<!-- STEPS -->
+<div class="steps-wrap">
+
+  <!-- Step 1 -->
+  <div class="step-block" data-step="1">
+    <div>
+      <div class="step-num">Step 1 of 8</div>
+      <div class="step-title">Log in to Riser Lumen</div>
+      <div class="step-desc">Open app.riserlumen.com in any browser. Click the link in your invitation email to set your password, then sign in. You land directly on your property dashboard.</div>
+      <div class="step-tip">Works on Chrome, Edge, and Safari — no app download needed.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-next" href="#step-2">Next: Add a screen →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">app.riserlumen.com/login</div></div>
+      <div class="mock-body" style="text-align:center;padding:24px">
+        <div style="font-size:14px;font-weight:700;color:#0D2B6B;margin-bottom:4px">Welcome back</div>
+        <div style="font-size:11px;color:#6b7280;margin-bottom:18px">Sign in to your Riser Lumen account</div>
+        <input class="mock-input" type="text" value="manager@hotel.com" readonly/>
+        <input class="mock-input" type="password" value="••••••••" readonly/>
+        <div class="mock-btn btn-navy">Sign in →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step-block" data-step="2" id="step-2">
+    <div>
+      <div class="step-num">Step 2 of 8</div>
+      <div class="step-title">Add a screen</div>
+      <div class="step-desc">Go to Screens and click Add screen. Give it a name — like "Lobby Left" or "F&B Menu Board". A 6-character pairing code is generated instantly.</div>
+      <div class="step-tip">Pairing codes expire after 24 hours. Generate a new one any time from the Screens page.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-1">← Previous</a>
+        <a class="nav-btn nav-next" href="#step-3">Next: Pair device →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Screens → Add screen</div></div>
+      <div class="mock-body">
+        <div class="mock-row"><div class="mock-label">Screen name</div><div class="mock-val">Lobby Left</div></div>
+        <div class="mock-row"><div class="mock-label">Zone</div><div class="mock-val"><span class="badge badge-blue">Lobby</span></div></div>
+        <div class="mock-label" style="margin-bottom:6px;margin-top:4px">Pairing code</div>
+        <div class="mock-code">R7-KX4</div>
+        <div class="mock-btn btn-teal">Copy player URL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step-block" data-step="3" id="step-3">
+    <div>
+      <div class="step-num">Step 3 of 8</div>
+      <div class="step-title">Pair your display</div>
+      <div class="step-desc">On the physical screen, open the player URL in a browser or via LG URL Launcher. Enter the pairing code when prompted. The screen goes Online within 30 seconds.</div>
+      <div class="step-tip">Supports LG webOS, Samsung Tizen, Android 10+, and any browser-capable device.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-2">← Previous</a>
+        <a class="nav-btn nav-next" href="#step-4">Next: Upload content →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Screens</div></div>
+      <div class="mock-body">
+        <div class="mock-screens">
+          <div class="mock-screen"><div class="mock-screen-name">Lobby Left</div><div class="mock-screen-status"><span class="sdot sdot-green"></span><span style="color:#16a34a">Online</span></div></div>
+          <div class="mock-screen"><div class="mock-screen-name">F&B Menu Board</div><div class="mock-screen-status"><span class="sdot sdot-green"></span><span style="color:#16a34a">Online</span></div></div>
+          <div class="mock-screen"><div class="mock-screen-name">Gym Screen</div><div class="mock-screen-status"><span class="sdot sdot-gray"></span><span style="color:#9ca3af">Pending</span></div></div>
+        </div>
+        <div class="mock-row"><div class="mock-label">Total</div><div class="mock-val">3 screens</div></div>
+        <div class="mock-row"><div class="mock-label">Online</div><div class="mock-val"><span class="badge badge-green">2 online</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step-block" data-step="4" id="step-4">
+    <div>
+      <div class="step-num">Step 4 of 8</div>
+      <div class="step-title">Upload your content</div>
+      <div class="step-desc">Go to Content and drag-and-drop images, videos, or HTML files into your library. Or paste a web URL. Everything is ready to add to any playlist immediately.</div>
+      <div class="step-tip">Recommended: 1920×1080px images. Max video size: 500MB. Supported formats: JPG, PNG, MP4, WebM, HTML5.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-3">← Previous</a>
+        <a class="nav-btn nav-next" href="#step-5">Next: Create playlist →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Content library</div></div>
+      <div class="mock-body">
+        <div class="mock-grid">
+          <div class="mock-file"><div class="mock-file-thumb" style="background:#0D2B6B">JPG</div><div class="mock-file-name">Hotel Welcome</div></div>
+          <div class="mock-file"><div class="mock-file-thumb" style="background:#00A4A4">MP4</div><div class="mock-file-name">Spa Promo</div></div>
+          <div class="mock-file-upload">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            <span>Upload</span>
+          </div>
+        </div>
+        <div class="mock-row"><div class="mock-label">Library</div><div class="mock-val">12 files · 340 MB</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step-block" data-step="5" id="step-5">
+    <div>
+      <div class="step-num">Step 5 of 8</div>
+      <div class="step-title">Create a playlist</div>
+      <div class="step-desc">Go to Playlists and click New playlist. Add content items, set the duration for each one, and drag to reorder. Save — your playlist is ready to assign to any screen.</div>
+      <div class="step-tip">Create separate playlists per zone — Lobby, F&B, Gym. Mix images, videos, and web content.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-4">← Previous</a>
+        <a class="nav-btn nav-next" href="#step-6">Next: Assign to screen →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Playlists → Lobby Welcome</div></div>
+      <div class="mock-body">
+        <div class="mock-playlist">
+          <div class="mock-pl-row"><div class="mock-pl-thumb"></div>Hotel Welcome slide<div class="mock-pl-dur">15s</div></div>
+          <div class="mock-pl-row"><div class="mock-pl-thumb"></div>Today's offers<div class="mock-pl-dur">10s</div></div>
+          <div class="mock-pl-row"><div class="mock-pl-thumb"></div>Spa promo video<div class="mock-pl-dur">30s</div></div>
+          <div class="mock-pl-row"><div class="mock-pl-thumb"></div>F&B menu board<div class="mock-pl-dur">20s</div></div>
+        </div>
+        <div class="mock-row"><div class="mock-label">Total loop</div><div class="mock-val">75 seconds</div></div>
+        <div class="mock-btn btn-navy">Save playlist</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="step-block" data-step="6" id="step-6">
+    <div>
+      <div class="step-num">Step 6 of 8</div>
+      <div class="step-title">Assign to your screen</div>
+      <div class="step-desc">Click on a screen, select your playlist from the dropdown, and save. The screen updates within 30 seconds. Assign one playlist to an entire zone in one click.</div>
+      <div class="step-tip">Group screens into zones — Lobby, F&B, Gym — and bulk-assign content to all of them at once.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-5">← Previous</a>
+        <a class="nav-btn nav-next" href="#step-7">Next: Set a schedule →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Screens → Lobby Left</div></div>
+      <div class="mock-body">
+        <div class="mock-row"><div class="mock-label">Screen</div><div class="mock-val" style="font-weight:600">Lobby Left</div></div>
+        <div class="mock-row"><div class="mock-label">Status</div><div class="mock-val"><span class="badge badge-green">Online</span></div></div>
+        <div class="mock-row"><div class="mock-label">Zone</div><div class="mock-val"><span class="badge badge-blue">Lobby</span></div></div>
+        <div class="mock-row"><div class="mock-label">Playlist</div><div class="mock-val" style="color:#00A4A4;font-weight:600">Lobby Welcome ✓</div></div>
+        <div class="mock-row"><div class="mock-label">Last ping</div><div class="mock-val" style="color:#9ca3af">12 seconds ago</div></div>
+        <div class="mock-btn btn-teal" style="margin-top:8px">Save assignment</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 7 -->
+  <div class="step-block" data-step="7" id="step-7">
+    <div>
+      <div class="step-num">Step 7 of 8</div>
+      <div class="step-title">Set a schedule</div>
+      <div class="step-desc">Use Schedule to automatically switch playlists by time of day or day of week — breakfast menu in the morning, dinner menu in the evening, weekend events on Fridays.</div>
+      <div class="step-tip">Schedules override the default playlist during their window, then return to it automatically when the window ends.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-6">← Previous</a>
+        <a class="nav-btn nav-next" href="#step-8">Next: You're live →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Schedule — F&B Menu Board</div></div>
+      <div class="mock-body">
+        <div class="mock-schedule">
+          <div class="mock-sched-row"><div class="mock-sched-time">7:00 – 11:00</div><span class="badge badge-blue">Breakfast menu</span><span style="margin-left:auto;font-size:9px;color:#9ca3af">Mon–Sun</span></div>
+          <div class="mock-sched-row"><div class="mock-sched-time">12:00 – 15:00</div><span class="badge badge-green">Lunch specials</span><span style="margin-left:auto;font-size:9px;color:#9ca3af">Mon–Fri</span></div>
+          <div class="mock-sched-row"><div class="mock-sched-time">18:00 – 22:00</div><span class="badge badge-gray">Dinner menu</span><span style="margin-left:auto;font-size:9px;color:#9ca3af">Mon–Sun</span></div>
+          <div class="mock-sched-row"><div class="mock-sched-time">Default</div><span class="badge badge-gray">Lobby Welcome</span><span style="margin-left:auto;font-size:9px;color:#9ca3af">All other times</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 8 -->
+  <div class="step-block" data-step="8" id="step-8">
+    <div>
+      <div class="step-num">Step 8 of 8</div>
+      <div class="step-title">You're live!</div>
+      <div class="step-desc">Your screens are playing. The Dashboard shows real-time screen health, your property intelligence score, active campaigns, and any alerts needing attention.</div>
+      <div class="step-tip">Next steps: invite your team with the right roles, run advertising campaigns, and view Analytics for proof-of-play reports.</div>
+      <div class="step-nav">
+        <a class="nav-btn nav-prev" href="#step-7">← Previous</a>
+        <a class="nav-btn nav-next" href="index.html" style="background:#00A4A4">Back to Help Centre →</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-url">Dashboard</div></div>
+      <div class="mock-body">
+        <div class="live-bar"><div class="live-dot"></div><div class="live-text">All screens online and healthy</div></div>
+        <div class="mock-kpis">
+          <div class="mock-kpi"><div class="mock-kpi-val">8</div><div class="mock-kpi-lbl">Screens</div></div>
+          <div class="mock-kpi"><div class="mock-kpi-val" style="color:#16a34a">8</div><div class="mock-kpi-lbl">Online</div></div>
+          <div class="mock-kpi"><div class="mock-kpi-val">3</div><div class="mock-kpi-lbl">Playlists</div></div>
+        </div>
+        <div class="mock-row"><div class="mock-label">Health score</div><div class="mock-val"><span style="color:#16a34a;font-weight:700">92/100</span> <span class="badge badge-green">Good</span></div></div>
+        <div class="mock-row"><div class="mock-label">Active ads</div><div class="mock-val">2 campaigns running</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const blocks = document.querySelectorAll('.step-block');
+const dots = document.getElementById('progress-dots');
+
+blocks.forEach((b,i) => {
+  const dot = document.createElement('div');
+  dot.className = 'progress-dot' + (i===0?' active':'');
+  dot.id = 'dot-'+i;
+  dots.appendChild(dot);
+});
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      const idx = parseInt(e.target.dataset.step) - 1;
+      document.querySelectorAll('.progress-dot').forEach((d,i) => {
+        d.className = 'progress-dot' + (i < idx ? ' done' : i === idx ? ' active' : '');
+      });
+    }
+  });
+}, {threshold: 0.3});
+
+blocks.forEach(b => io.observe(b));
+</script>
+</body>
+</html>
