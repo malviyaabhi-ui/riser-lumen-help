@@ -279,8 +279,17 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:#f9fafb;color:var(--t
 
     <!-- PLATFORM FLOW -->
     <div id="tour-section"></div>
-    <div class="slabel" style="margin-bottom:16px">How Riser Lumen Works</div>
-    <div id="flow-section" style="margin-bottom:48px">
+    <div style="margin-bottom:48px;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
+      <div onclick="toggleFlow()" style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#f9fafb;cursor:pointer;user-select:none">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span id="flow-chevron" style="font-size:20px;color:#0D2B6B;display:inline-block;transition:transform .25s;line-height:1">›</span>
+          <span style="font-size:13px;font-weight:700;color:#0D2B6B;text-transform:uppercase;letter-spacing:1.5px">How Riser Lumen Works</span>
+        </div>
+        <span id="flow-toggle-label" style="font-size:12px;color:#6b7280">Click to expand</span>
+      </div>
+      <div id="flow-body" style="max-height:0;overflow:hidden;transition:max-height .45s ease">
+        <div style="padding:8px">
+    <div id="flow-section" style="margin-bottom:24px">
 
       <!-- Main flow -->
       <div style="position:relative">
@@ -604,7 +613,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:#f9fafb;color:var(--t
         </div>
       </div>
     </div>
-    <a class="quick-tour" href="#" onclick="var fb=document.getElementById('flow-body');if(!fb.style.maxHeight||fb.style.maxHeight==='0px'){toggleFlow();}document.getElementById('tour-section').scrollIntoView({behavior:'smooth'});return false">
+        </div>
+      </div>
+    </div>
+    <a class="quick-tour" href="#" onclick="var fb=document.getElementById('flow-body');if(!fb.style.maxHeight||fb.style.maxHeight==='0px'||fb.style.maxHeight===''){toggleFlow();}setTimeout(function(){document.getElementById('tour-section').scrollIntoView({behavior:'smooth'});},50);return false">
       <div class="tour-left">
         <div class="tour-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00A4A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -798,16 +810,16 @@ function selectFlow(idx) {
 
 
 function toggleFlow(){
-  const body = document.getElementById('flow-body');
-  const chevron = document.getElementById('flow-chevron');
-  const label = document.getElementById('flow-toggle-label');
-  const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+  var body = document.getElementById('flow-body');
+  var chevron = document.getElementById('flow-chevron');
+  var label = document.getElementById('flow-toggle-label');
+  var isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
   if(isOpen){
-    body.style.maxHeight = '0';
+    body.style.maxHeight = '0px';
     chevron.style.transform = 'rotate(0deg)';
     label.textContent = 'Click to expand';
   } else {
-    body.style.maxHeight = body.scrollHeight + 4000 + 'px';
+    body.style.maxHeight = '9999px';
     chevron.style.transform = 'rotate(90deg)';
     label.textContent = 'Click to collapse';
   }
