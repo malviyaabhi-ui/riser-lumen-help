@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Riser Lumen — Help Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D2B6B;--teal:#00A4A4;--border:#e5e7eb;--text:#111827;--muted:#6b7280}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#f9fafb;color:var(--text)}
+
+/* HERO BAND */
+.hero{background:linear-gradient(110deg,#0D2B6B 0%,#0c3d5e 50%,#0a5252 100%)}
+
+/* Row 1: logo | title+sub | search — tight 3-column */
+.hero-row1{
+  display:flex;align-items:center;gap:0;
+  padding:28px 48px;
+}
+.hero-logo{
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+  padding-right:40px;border-right:1px solid rgba(255,255,255,0.12);
+}
+
+.hero-logo .lname{font-size:15px;font-weight:800;color:#fff;line-height:1.2}
+.hero-logo .lsub{font-size:10px;color:rgba(255,255,255,0.4);margin-top:1px}
+.hero-mid{
+  flex:1;text-align:center;padding:0 40px;
+}
+.hero-mid h1{font-size:38px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:6px}
+.hero-mid p{font-size:13px;color:rgba(255,255,255,0.5)}
+.hero-search{
+  display:flex;align-items:center;gap:0;flex-shrink:0;
+  background:#fff;border-radius:40px;padding:4px 4px 4px 14px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);width:300px;
+}
+.hero-search svg{color:#9ca3af;flex-shrink:0}
+.hero-search input{
+  flex:1;border:none;outline:none;font-size:13px;font-family:'DM Sans',sans-serif;
+  color:var(--text);padding:6px 8px;background:transparent;min-width:0;
+}
+.hero-search button{
+  background:var(--navy);color:#fff;border:none;border-radius:32px;
+  padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;
+  font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;
+}
+
+/* Quick links pills */
+.pills-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{
+  background:#fff;border:1px solid var(--border);
+  border-radius:99px;padding:6px 16px;font-size:13px;color:var(--navy);
+  cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;
+  transition:background .14s,border-color .14s,color .14s;
+}
+.pill:hover{background:#f0fafa;border-color:var(--teal);color:var(--teal)}
+/* FAQ items */
+.faq-section{margin-bottom:32px}
+.faq-item{
+  padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;
+  font-weight:600;color:var(--navy);cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:color .15s;
+}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-item::after{content:'→';font-size:14px;color:var(--muted);transition:transform .15s}
+.faq-item:hover{color:var(--teal)}
+.faq-item:hover::after{transform:translateX(3px)}
+
+/* PAGE */
+.page{max-width:1100px;margin:0 auto;padding:48px 48px 80px}
+
+/* SECTION LABEL */
+.slabel{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
+
+/* FREQ GRID */
+.freq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:52px}
+.freq-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:16px 18px;text-decoration:none;display:block;
+  transition:background .2s,box-shadow .2s,transform .2s;
+}
+.freq-card:hover{background:var(--navy);border-color:var(--navy);box-shadow:0 8px 24px rgba(13,43,107,0.25);transform:translateY(-2px)}
+.freq-card:hover .freq-title{color:#fff}
+.freq-card:hover .freq-cat{color:var(--teal)}
+.freq-card:hover svg{color:rgba(255,255,255,0.4)}
+.freq-card svg{color:var(--muted);margin-bottom:8px;display:block;transition:color .2s}
+.freq-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.35;transition:color .2s}
+.freq-cat{font-size:11px;color:var(--teal);font-weight:600;transition:color .2s}
+
+/* CAT GRID */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:56px}
+.cat-card{
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:24px;text-decoration:none;display:block;cursor:pointer;
+  transition:background .2s,border-color .2s,box-shadow .2s,transform .2s;
+}
+.cat-card:hover{background:#0D2B6B;border-color:#0D2B6B;box-shadow:0 10px 32px rgba(13,43,107,0.3);transform:translateY(-3px)}
+.cat-card:hover .cat-title{color:#ffffff}
+.cat-card:hover .cat-desc{color:rgba(255,255,255,0.55)}
+.cat-card:hover .cat-count{color:#00A4A4}
+.cat-card:hover .cat-icon{background:rgba(255,255,255,0.12) !important}
+.cat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:background .2s}
+.cat-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;transition:color .2s}
+.cat-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px;transition:color .2s}
+.cat-count{font-size:13px;color:var(--teal);font-weight:600;transition:color .2s}
+
+/* SUPPORT FOOTER */
+.support{background:#fff;border:1px solid var(--border);border-radius:12px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.support h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.support p{font-size:13px;color:var(--muted)}
+.support a{background:var(--navy);color:#fff;text-decoration:none;padding:10px 22px;border-radius:8px;font-size:13px;font-weight:700;flex-shrink:0}
+
+/* VIEWS */
+.home-view{display:block}.home-view.hidden{display:none}
+.list-view{display:none}.list-view.active{display:block}
+.art-view{display:none}.art-view.active{display:block}
+
+/* BACK BTN */
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);font-weight:600;cursor:pointer;background:none;border:none;padding:0;margin-bottom:20px;text-decoration:none}
+.back:hover{color:var(--text)}
+
+/* LIST */
+.list-hd{margin-bottom:28px}
+.list-hd h2{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.list-hd p{font-size:13px;color:var(--muted)}
+.art-item{border-bottom:1px solid var(--border);padding:16px 0;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .12s}
+.art-item:first-of-type{border-top:1px solid var(--border)}
+.art-item:hover .art-item-title{color:var(--teal)}
+.art-item svg{color:var(--muted);flex-shrink:0}
+.art-item-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.art-item-meta{font-size:11px;color:var(--muted)}
+.art-item-arrow{margin-left:auto;color:var(--muted);flex-shrink:0}
+
+/* ARTICLE */
+.art-view h1{font-size:26px;font-weight:800;color:var(--navy);margin-bottom:6px;line-height:1.25}
+.art-meta{font-size:12px;color:var(--muted);padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.art-body p{font-size:14px;color:#374151;line-height:1.75;margin-bottom:14px}
+.art-body h3{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px;margin:24px 0 8px}
+.art-body ul,.art-body ol{padding-left:20px;margin-bottom:14px}
+.art-body li{font-size:14px;color:#374151;line-height:1.65;margin-bottom:5px}
+.art-body code{font-family:monospace;font-size:13px;background:#f1f5f9;color:var(--navy);border-radius:4px;padding:1px 6px}
+.art-body .tip{background:#f0fafa;border-left:3px solid var(--teal);border-radius:0 7px 7px 0;padding:11px 15px;margin:14px 0;font-size:13px;color:#0f5454;line-height:1.6}
+.art-body .warn{background:#fffbeb;border-left:3px solid #f59e0b;border-radius:0 7px 7px 0;padding:11px 15px;margin:14px 0;font-size:13px;color:#78350f;line-height:1.6}
+.steps{display:flex;flex-direction:column;gap:10px;margin:10px 0 16px}
+.step{display:flex;gap:11px;align-items:flex-start}
+.step-n{width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step p{font-size:14px;color:#374151;line-height:1.65;margin:0}
+.art-body table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.art-body th{background:#f3f4f6;padding:9px 13px;text-align:left;font-weight:700;color:var(--navy);border-bottom:1px solid var(--border)}
+.art-body td{padding:9px 13px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:top}
+.art-body tr:last-child td{border-bottom:none}
+
+/* FLOW DIAGRAM */
+#flow-steps{display:flex;align-items:flex-start;gap:0;padding-bottom:8px;overflow-x:auto}
+#flow-steps::-webkit-scrollbar{height:4px}
+#flow-steps::-webkit-scrollbar-track{background:#f1f1f1;border-radius:99px}
+#flow-steps::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:99px}
+.flow-step{
+  display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;
+  padding:12px 10px;border-radius:12px;transition:background .15s;flex-shrink:0;min-width:80px;
+  border:2px solid transparent;
+}
+.flow-step:hover{background:#f0f4ff}
+.flow-step[data-active="true"]{background:#f0f4ff;border-color:#0D2B6B}
+.flow-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.flow-step[data-active="true"] .flow-icon{transform:scale(1.08)}
+.flow-label{font-size:11px;font-weight:600;color:#374151;text-align:center;line-height:1.3}
+.flow-step[data-active="true"] .flow-label{color:#0D2B6B}
+.flow-arrow{font-size:18px;color:#d1d5db;padding:0 2px;margin-top:22px;flex-shrink:0}
+.flow-panel{display:none}
+.flow-panel-hero{padding:24px 28px}
+.flow-panel-step{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.flow-panel-title{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;line-height:1.2}
+.flow-panel-sub{font-size:13px;color:rgba(255,255,255,0.65)}
+.flow-panel-body{background:#fff;padding:24px 28px}
+.flow-panel-cols{display:grid;grid-template-columns:1fr 1fr 200px;gap:32px}
+.flow-col-label{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.flow-col-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;line-height:1.5;margin-bottom:8px}
+.flow-dot{width:6px;height:6px;border-radius:50%;background:#d1d5db;flex-shrink:0;margin-top:6px}
+.flow-dot.teal{background:#00A4A4}
+.flow-next-btn{background:#0D2B6B;color:#fff;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:background .15s;margin-top:4px}
+.flow-next-btn:hover{background:#0a2257}
+
+/* QUICK TOUR BLOCK */
+.quick-tour{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:#0D2B6B;border-radius:14px;padding:24px 32px;margin-bottom:40px;
+  cursor:pointer;position:relative;overflow:hidden;text-decoration:none;
+  border:1px solid rgba(0,164,164,0.3);
+  animation:tourGlow 3s ease-in-out infinite;
+}
+@keyframes tourGlow{
+  0%,100%{box-shadow:0 0 0 0 rgba(0,164,164,0)}
+  50%{box-shadow:0 0 32px 4px rgba(0,164,164,0.25)}
+}
+.quick-tour::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 10% 50%,rgba(0,164,164,0.15) 0%,transparent 60%);
+  pointer-events:none;
+}
+.tour-left{display:flex;align-items:center;gap:16px}
+.tour-icon{width:44px;height:44px;border-radius:10px;background:rgba(0,164,164,0.2);
+  border:1px solid rgba(0,164,164,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tour-text-label{font-size:10px;font-weight:700;color:#00A4A4;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.tour-text-title{font-size:18px;font-weight:700;color:#fff;line-height:1.2}
+.tour-text-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-top:3px}
+.tour-arrow{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;
+  color:#00A4A4;background:rgba(0,164,164,0.12);border:1px solid rgba(0,164,164,0.3);
+  border-radius:99px;padding:8px 20px;flex-shrink:0;transition:background .2s}
+.quick-tour:hover .tour-arrow{background:rgba(0,164,164,0.25)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-row1">
+    <!-- Logo -->
+    <div class="hero-logo">
+      <svg width="220" height="72" viewBox="100 80 1000 230" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(120, 90)">
+          <rect x="0" y="0" width="140" height="104" rx="10" fill="none" stroke="#ffffff" stroke-width="4"/>
+          <rect x="6" y="6" width="128" height="92" rx="4" fill="rgba(255,255,255,0.08)"/>
+          <rect x="6" y="6" width="80" height="74" fill="rgba(255,255,255,0.06)"/>
+          <rect x="10" y="10" width="72" height="44" rx="2" fill="rgba(255,255,255,0.08)"/>
+          <polygon points="10,54 28,34 42,44 56,26 82,54" fill="rgba(255,255,255,0.12)"/>
+          <circle cx="66" cy="22" r="8" fill="#ffffff" opacity="0.4"/>
+          <circle cx="44" cy="40" r="10" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+          <polygon points="40,35 40,45 51,40" fill="#ffffff" opacity="0.7"/>
+          <rect x="10" y="58" width="72" height="4" rx="2" fill="#ffffff" opacity="0.15"/>
+          <rect x="10" y="58" width="30" height="4" rx="2" fill="#ffffff" opacity="0.5"/>
+          <line x1="86" y1="6" x2="86" y2="80" stroke="#ffffff" stroke-width="1.5" opacity="0.4"/>
+          <rect x="86" y="6" width="48" height="74" fill="rgba(255,255,255,0.05)"/>
+          <rect x="92" y="14" width="36" height="4" rx="2" fill="#ffffff" opacity="0.6"/>
+          <rect x="92" y="24" width="28" height="3" rx="1.5" fill="#ffffff" opacity="0.35"/>
+          <rect x="92" y="32" width="32" height="3" rx="1.5" fill="#ffffff" opacity="0.3"/>
+          <rect x="92" y="44" width="36" height="22" rx="2" fill="rgba(255,255,255,0.1)"/>
+          <polygon points="92,66 102,54 110,60 118,48 128,66" fill="rgba(255,255,255,0.15)"/>
+          <rect x="92" y="70" width="20" height="3" rx="1.5" fill="#ffffff" opacity="0.25"/>
+          <circle cx="130" cy="12" r="4" fill="#ffffff"/>
+          <rect x="6" y="80" width="128" height="18" fill="rgba(255,255,255,0.2)"/>
+          <rect x="10" y="84" width="20" height="10" rx="2" fill="rgba(255,255,255,0.3)"/>
+          <text x="20" y="91" font-size="7" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="Arial, sans-serif">LIVE</text>
+          <rect x="36" y="87" width="26" height="3" rx="1.5" fill="#ffffff" opacity="0.7"/>
+          <rect x="68" y="87" width="18" height="3" rx="1.5" fill="#ffffff" opacity="0.5"/>
+          <rect x="92" y="87" width="28" height="3" rx="1.5" fill="#ffffff" opacity="0.6"/>
+          <line x1="70" y1="104" x2="70" y2="122" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+          <line x1="44" y1="122" x2="96" y2="122" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+          <text x="172" y="62" font-size="96" font-weight="700" letter-spacing="-2" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" dominant-baseline="middle">RISER</text>
+          <text x="176" y="120" font-size="96" font-weight="300" letter-spacing="14" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" opacity="0.85" dominant-baseline="middle">LUMEN</text>
+          <line x1="172" y1="148" x2="985" y2="148" stroke="#ffffff" stroke-width="1.5" opacity="0.25"/>
+          <text x="176" y="172" font-size="22" font-weight="400" letter-spacing="7" font-family="Arial, Helvetica, sans-serif" fill="#ffffff" opacity="0.5" dominant-baseline="middle">DIGITAL SIGNAGE INTELLIGENCE</text>
+        </g>
+      </svg>
+    </div>
+    <!-- Title centre -->
+    <div class="hero-mid">
+      <h1>How can we help you?</h1>
+      <p>Search our knowledge base or browse categories below</p>
+    </div>
+    <!-- Search right -->
+    <div class="hero-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search help articles…" id="sinput" oninput="doSearch(this.value)"/>
+      <button onclick="doSearch(document.getElementById('sinput').value)">Search</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HOME -->
+  <div class="home-view" id="home">
+
+
+    <!-- PLATFORM FLOW -->
+    <div id="tour-section"></div>
+    <div class="slabel" style="margin-bottom:16px">How Riser Lumen Works</div>
+    <div id="flow-section" style="margin-bottom:48px">
+
+      <!-- Main flow -->
+      <div style="position:relative">
+
+        <!-- Flow steps -->
+        <div id="flow-steps" style="display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:8px">
+
+          <!-- Step 1: Login -->
+          <div class="flow-step" onclick="selectFlow(0)" id="fs-0" data-active="true">
+            <div class="flow-icon" style="background:#eef2ff">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            </div>
+            <div class="flow-label">Login</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 2: Add Screen -->
+          <div class="flow-step" onclick="selectFlow(1)" id="fs-1">
+            <div class="flow-icon" style="background:#f0fdf4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div class="flow-label">Add Screen</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 3: Pair Device -->
+          <div class="flow-step" onclick="selectFlow(2)" id="fs-2">
+            <div class="flow-icon" style="background:#fff7ed">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="flow-label">Pair Device</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 4: Upload Content -->
+          <div class="flow-step" onclick="selectFlow(3)" id="fs-3">
+            <div class="flow-icon" style="background:#fdf4ff">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            </div>
+            <div class="flow-label">Upload Content</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 5: Create Playlist -->
+          <div class="flow-step" onclick="selectFlow(4)" id="fs-4">
+            <div class="flow-icon" style="background:#fff1f2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div class="flow-label">Create Playlist</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 6: Assign -->
+          <div class="flow-step" onclick="selectFlow(5)" id="fs-5">
+            <div class="flow-icon" style="background:#f0f9ff">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div class="flow-label">Assign to Screen</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 7: Schedule -->
+          <div class="flow-step" onclick="selectFlow(6)" id="fs-6">
+            <div class="flow-icon" style="background:#fefce8">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="flow-label">Schedule</div>
+          </div>
+          <div class="flow-arrow">→</div>
+
+          <!-- Step 8: Go Live -->
+          <div class="flow-step" onclick="selectFlow(7)" id="fs-7">
+            <div class="flow-icon" style="background:#f0fdf4">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="flow-label">Go Live</div>
+          </div>
+
+        </div>
+
+        <!-- Detail panel -->
+        <div id="flow-detail" style="margin-top:16px;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb">
+
+          <div id="fd-0" class="flow-panel" style="display:block">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#4f46e5,#7c3aed)">
+              <div class="flow-panel-step">Step 1</div>
+              <div class="flow-panel-title">Login to Riser Lumen</div>
+              <div class="flow-panel-sub">Access your property dashboard from any browser</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">What you need</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Your invitation email from Riser Lumen</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>A modern browser (Chrome, Edge, Safari)</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Internet connection</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">What happens</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Click the link in your invite email</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Set your password</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Log in at <strong>app.riserlumen.com</strong></div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>You land on your property Dashboard</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(1)">Add your first screen →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-1" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#16a34a,#059669)">
+              <div class="flow-panel-step">Step 2</div>
+              <div class="flow-panel-title">Add a Screen</div>
+              <div class="flow-panel-sub">Register your display in the platform before pairing it</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">In the app</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Go to <strong>Screens</strong> in the sidebar</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Click <strong>Add screen</strong></div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Give it a name (e.g. "Lobby Left")</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Assign a zone or group (optional)</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">What you get</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>A 6-character pairing code</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>A unique player URL for the screen</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Screen appears in your screens list as "Pending"</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(2)">Pair your device →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-2" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#ea580c,#dc2626)">
+              <div class="flow-panel-step">Step 3</div>
+              <div class="flow-panel-title">Pair Your Device</div>
+              <div class="flow-panel-sub">Connect your physical display to the platform</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">LG webOS</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Settings → URL Launcher</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Enter the player URL</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Enable auto-launch on boot</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Any browser device</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Open Chrome or Edge</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Navigate to the player URL</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Enter the 6-character pairing code</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Screen shows <strong>Online</strong> within 30 seconds</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(3)">Upload content →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-3" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#9333ea,#7c3aed)">
+              <div class="flow-panel-step">Step 4</div>
+              <div class="flow-panel-title">Upload Content</div>
+              <div class="flow-panel-sub">Add images, videos, or web URLs to your content library</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Supported formats</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Images — JPG, PNG, WebP (1920×1080 recommended)</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Video — MP4, WebM, MOV (max 500MB)</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Web URL — any public HTTPS page</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>HTML5 widgets</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">How to upload</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Go to <strong>Content</strong> in the sidebar</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Click <strong>Upload</strong> or drag and drop files</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Or use <strong>Templates</strong> for ready-made layouts</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Organise into folders by zone or campaign</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(4)">Create a playlist →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-4" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#e11d48,#be123c)">
+              <div class="flow-panel-step">Step 5</div>
+              <div class="flow-panel-title">Create a Playlist</div>
+              <div class="flow-panel-sub">Build an ordered loop of content items</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Building a playlist</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Go to <strong>Playlists</strong> → <strong>New playlist</strong></div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Give it a name (e.g. "Lobby Welcome")</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Add content items from your library</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Set duration for each item (in seconds)</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Drag to reorder, then Save</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Tips</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Mix images and videos in one playlist</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Create separate playlists per zone (Lobby, F&B, Gym)</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Add ad creatives to monetise screen time</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(5)">Assign to screen →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-5" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#0284c7,#0369a1)">
+              <div class="flow-panel-step">Step 6</div>
+              <div class="flow-panel-title">Assign to Screen</div>
+              <div class="flow-panel-sub">Link your playlist to one or more displays</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Single screen</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Go to <strong>Screens</strong></div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Click the screen name</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Select playlist from the dropdown</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Screen updates within 30 seconds</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Multiple screens (group)</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Assign screens to a Zone (e.g. "Lobby")</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>From Dashboard → Groups panel</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Assign playlist to the whole group at once</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>All screens in that zone update together</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(6)">Set a schedule →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-6" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#ca8a04,#b45309)">
+              <div class="flow-panel-step">Step 7</div>
+              <div class="flow-panel-title">Schedule Content</div>
+              <div class="flow-panel-sub">Automatically switch playlists by time of day or day of week</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Setting up a schedule</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Go to <strong>Schedule</strong> → <strong>New schedule</strong></div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Select a screen or group</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Choose a playlist</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Set start time, end time, days of week</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Example use cases</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Breakfast menu 7am–11am</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Lunch specials 12pm–3pm</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Evening promos 6pm–10pm</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Weekend events playlist on Fri–Sun</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Next step</div>
+                  <div class="flow-next-btn" onclick="selectFlow(7)">You're live! →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="fd-7" class="flow-panel" style="display:none">
+            <div class="flow-panel-hero" style="background:linear-gradient(120deg,#16a34a,#00A4A4)">
+              <div class="flow-panel-step">Step 8</div>
+              <div class="flow-panel-title">You're Live 🎉</div>
+              <div class="flow-panel-sub">Your screens are running. Here's what to explore next.</div>
+            </div>
+            <div class="flow-panel-body">
+              <div class="flow-panel-cols">
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Monitor</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Check screen status on the Dashboard</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>View Intelligence health score</div>
+                  <div class="flow-col-item"><span class="flow-dot"></span>Set up offline alerts in Settings</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Grow</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Invite your team with right roles</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Run advertising campaigns</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>View Analytics and proof-of-play</div>
+                  <div class="flow-col-item"><span class="flow-dot teal"></span>Use Emergency broadcast when needed</div>
+                </div>
+                <div class="flow-panel-col">
+                  <div class="flow-col-label">Need help?</div>
+                  <div class="flow-next-btn" onclick="selectFlow(0)" style="background:#f3f4f6;color:#0D2B6B">Start over from Step 1</div>
+                  <div style="margin-top:8px"><a href="mailto:support@riserlumen.com" style="font-size:12px;color:#00A4A4;font-weight:600;text-decoration:none">Email support →</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <a class="quick-tour" href="#" onclick="var fb=document.getElementById('flow-body');if(!fb.style.maxHeight||fb.style.maxHeight==='0px'){toggleFlow();}document.getElementById('tour-section').scrollIntoView({behavior:'smooth'});return false">
+      <div class="tour-left">
+        <div class="tour-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00A4A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="tour-text-label">✦ Interactive walkthrough</div>
+          <div class="tour-text-title">Take a quick tour</div>
+          <div class="tour-text-sub">See how Riser Lumen works — from login to live screens in 8 steps</div>
+        </div>
+      </div>
+      <div class="tour-arrow">Start tour →</div>
+    </a>
+
+    <div class="slabel">Quick Links</div>
+    <div class="pills-row" style="margin-bottom:40px">
+      <button class="pill" onclick="openArt('pairing')">How to pair a screen</button>
+      <button class="pill" onclick="openArt('invite')">How to invite a team member</button>
+      <button class="pill" onclick="openArt('playlist')">Creating a playlist</button>
+      <button class="pill" onclick="openArt('broadcast')">Emergency broadcast</button>
+      <button class="pill" onclick="openArt('roles')">Roles &amp; permissions</button>
+      <button class="pill" onclick="openArt('player')">Player setup by device</button>
+      <button class="pill" onclick="openArt('offline')">Screen showing offline</button>
+      <button class="pill" onclick="openArt('schedule')">Scheduling content</button>
+      <button class="pill" onclick="openArt('analytics')">Analytics &amp; reporting</button>
+      <button class="pill" onclick="openArt('audit')">Using the Audit Log</button>
+    </div>
+
+    <div class="slabel">Browse All Categories</div>
+    <div class="cat-grid">
+      <a class="cat-card" href="#" onclick="openCat('getting-started');return false">
+        <div class="cat-icon" style="background:#eef2ff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="cat-title">Getting Started</div>
+        <div class="cat-desc">Log in, understand the dashboard, and get your first screen online.</div>
+        <div class="cat-count">3 articles →</div>
+      </a>
+      <a class="cat-card" href="#" onclick="openCat('screens');return false">
+        <div class="cat-icon" style="background:#f0fdf4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="cat-title">Screens</div>
+        <div class="cat-desc">Pair displays, troubleshoot offline screens, set up zones, and configure player devices.</div>
+        <div class="cat-count">4 articles →</div>
+      </a>
+      <a class="cat-card" href="#" onclick="openCat('content');return false">
+        <div class="cat-icon" style="background:#fff7ed"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="1.8" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        <div class="cat-title">Content</div>
+        <div class="cat-desc">Upload images and videos, build playlists, schedule content, and use templates.</div>
+        <div class="cat-count">4 articles →</div>
+      </a>
+      <a class="cat-card" href="#" onclick="openCat('team');return false">
+        <div class="cat-icon" style="background:#f0f9ff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="cat-title">Team &amp; Access</div>
+        <div class="cat-desc">Invite staff, assign roles, manage permissions, and remove members.</div>
+        <div class="cat-count">3 articles →</div>
+      </a>
+      <a class="cat-card" href="#" onclick="openCat('advertising');return false">
+        <div class="cat-icon" style="background:#fdf4ff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="cat-title">Advertising &amp; Analytics</div>
+        <div class="cat-desc">Run ad campaigns, send quotes, view proof-of-play reports and revenue data.</div>
+        <div class="cat-count">3 articles →</div>
+      </a>
+      <a class="cat-card" href="#" onclick="openCat('advanced');return false">
+        <div class="cat-icon" style="background:#fff1f2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="cat-title">Advanced</div>
+        <div class="cat-desc">Emergency broadcast, Intelligence health score, Security events, and Audit log.</div>
+        <div class="cat-count">4 articles →</div>
+      </a>
+    </div>
+
+    <div class="slabel" style="margin-top:48px">Frequently Read Articles</div>
+    <div class="freq-grid" style="margin-bottom:32px">
+      <a class="freq-card" href="#" onclick="openArt('pairing');return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="freq-title">How to pair your first screen</div>
+        <div class="freq-cat">Getting Started</div>
+      </a>
+      <a class="freq-card" href="#" onclick="openArt('invite');return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="freq-title">How to invite a team member</div>
+        <div class="freq-cat">Team &amp; Access</div>
+      </a>
+      <a class="freq-card" href="#" onclick="openArt('playlist');return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="freq-title">Creating and assigning a playlist</div>
+        <div class="freq-cat">Content</div>
+      </a>
+      <a class="freq-card" href="#" onclick="openArt('player');return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="freq-title">Player setup — LG, Android, Raspberry Pi</div>
+        <div class="freq-cat">Screens</div>
+      </a>
+      <a class="freq-card" href="#" onclick="openArt('roles');return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="freq-title">Roles and what each one can do</div>
+        <div class="freq-cat">Team &amp; Access</div>
+      </a>
+      <a class="freq-card" href="#" onclick="openArt('broadcast');return false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <div class="freq-title">Sending an emergency broadcast</div>
+        <div class="freq-cat">Advanced</div>
+      </a>
+    </div>
+
+    <div class="support">
+      <div>
+        <h3>Can't find what you're looking for?</h3>
+        <p>Our support team responds within 1 business day (GST business hours).</p>
+      </div>
+      <a href="mailto:support@riserlumen.com">Email support →</a>
+    </div>
+
+  </div>
+
+  <!-- CATEGORY LIST -->
+  <div class="list-view" id="catview">
+    <button class="back" onclick="showHome()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      All categories
+    </button>
+    <div class="list-hd"><h2 id="ctitle"></h2><p id="cdesc"></p></div>
+    <div id="cartlist"></div>
+  </div>
+
+  <!-- ARTICLE -->
+  <div class="art-view" id="artview">
+    <button class="back" onclick="backToCat()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <span id="blabel">Back</span>
+    </button>
+    <h1 id="atitle"></h1>
+    <div class="art-meta" id="ameta"></div>
+    <div class="art-body" id="abody"></div>
+  </div>
+</div>
+
+<script>
+const CATS = {
+  'getting-started':{title:'Getting Started',desc:'Log in, understand the dashboard, and get your property set up.',arts:['login','dashboard','pairing']},
+  'screens':{title:'Screens',desc:'Pair displays, troubleshoot issues, set up zones, and configure player devices.',arts:['pairing','offline','zones','player']},
+  'content':{title:'Content',desc:'Upload media, build playlists, schedule content, and use hospitality templates.',arts:['upload','playlist','schedule','templates']},
+  'team':{title:'Team & Access',desc:'Invite staff with the right role, manage permissions, and remove members.',arts:['invite','roles','remove']},
+  'advertising':{title:'Advertising & Analytics',desc:'Run campaigns, send quotes to advertisers, and view revenue reports.',arts:['campaign','quote','analytics']},
+  'advanced':{title:'Advanced',desc:'Emergency broadcast, Intelligence health score, Security events, and Audit log.',arts:['broadcast','intelligence','security','audit']}
+};
+
+const ARTS = {
+  login:{title:'How to log in',cat:'Getting Started',catId:'getting-started',roles:'All roles',body:`<p>Go to <code>app.riserlumen.com</code> and enter your email and password. If this is your first time, click the link in your invitation email to set your password first.</p><h3>Steps</h3><div class="steps"><div class="step"><div class="step-n">1</div><p>Open <code>app.riserlumen.com</code> in Chrome, Edge, or Safari.</p></div><div class="step"><div class="step-n">2</div><p>Enter your email and password, then click <strong>Sign in</strong>.</p></div><div class="step"><div class="step-n">3</div><p>First-time login? Use the link in your invitation email to set your password first.</p></div></div><div class="tip">Bookmark <code>app.riserlumen.com</code> — works on all modern browsers, no app download required.</div><div class="warn">If you see "No property found" after login, contact your Property Admin. Your account may not be assigned to a property yet.</div>`},
+  dashboard:{title:'Understanding the dashboard',cat:'Getting Started',catId:'getting-started',roles:'All roles',body:`<p>The dashboard is your home screen — a real-time view of screen health, content status, alerts, and revenue.</p><h3>What you will see</h3><ul><li><strong>KPI cards</strong> — Total screens, online count, playlists, schedules, and today's revenue.</li><li><strong>Intelligence strip</strong> — Property health score, active campaigns, and top-priority alert.</li><li><strong>System status</strong> — Alerts for offline screens, unassigned screens, expiring campaigns.</li><li><strong>Groups and Zones</strong> — Screen groups and which are online.</li><li><strong>Today's schedule</strong> — Playlists scheduled to play today and at what times.</li></ul><div class="tip">The dashboard updates in real time — no need to refresh the page.</div>`},
+  pairing:{title:'How to pair a new screen',cat:'Getting Started',catId:'getting-started',roles:'Property Admin · Screen Operator · IT Manager',body:`<p>Pairing connects a physical display to your account. Once paired, assign content and monitor it from the dashboard.</p><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Screens</strong> and click <strong>Add screen</strong>.</p></div><div class="step"><div class="step-n">2</div><p>Give the screen a name, then click <strong>Generate pairing code</strong>.</p></div><div class="step"><div class="step-n">3</div><p>Note the 6-character code.</p></div><div class="step"><div class="step-n">4</div><p>On the display, open the Riser Lumen player URL and enter the code when prompted.</p></div><div class="step"><div class="step-n">5</div><p>Screen status changes to <strong>Online</strong> within 30 seconds.</p></div></div><div class="tip">You can assign a playlist immediately — content shows within 30 seconds.</div><div class="warn">Pairing codes expire after 24 hours. Generate a new one if yours has expired.</div>`},
+  offline:{title:'Screen showing offline — what to do',cat:'Screens',catId:'screens',roles:'Property Admin · IT Manager',body:`<p>A screen shows offline when it has not checked in for 5 minutes. Usually a network or power issue at the device.</p><h3>What to check</h3><ol><li>Confirm the display is powered on and the player device is connected.</li><li>Check the device has an active internet connection.</li><li>Restart the player device.</li><li>If using a browser player, reload the page on the device.</li><li>If still offline, re-pair the screen from the Screens page.</li></ol><div class="tip">Set up offline alerts in <strong>Settings</strong> to get notified by email when a screen goes down.</div>`},
+  zones:{title:'Grouping screens into zones',cat:'Screens',catId:'screens',roles:'Property Admin · Content Manager',body:`<p>Groups let you bulk-assign a playlist to multiple screens at once. Common groups: Lobby, F&B, Gym, Meeting Rooms.</p><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Screens</strong> and click a screen to open its detail panel.</p></div><div class="step"><div class="step-n">2</div><p>Select a group from the <strong>Zone / Group</strong> dropdown, or type a new name to create one.</p></div><div class="step"><div class="step-n">3</div><p>Repeat for all screens in that zone.</p></div><div class="step"><div class="step-n">4</div><p>Assign a playlist to the whole group from the Groups panel on the Dashboard.</p></div></div>`},
+  player:{title:'Player setup by device type',cat:'Screens',catId:'screens',roles:'IT Manager · Property Admin',body:`<p>Riser Lumen supports multiple device types. Use the method that matches your hardware.</p><h3>LG webOS displays</h3><ol><li>Go to <strong>Settings → SI Server Settings → URL Launcher</strong>.</li><li>Enter your screen player URL (shown in the screen detail panel after pairing).</li><li>Enable URL Launcher and set it to auto-launch on boot.</li></ol><h3>Samsung Tizen displays</h3><ol><li>Go to <strong>Settings → URL Launcher Settings</strong>.</li><li>Enter the player URL and save. Reboot.</li></ol><h3>Android displays (Android 10+)</h3><ol><li>Install the Riser Lumen APK via ADB or MDM.</li><li>Open the app and enter your pairing code.</li><li>Enable auto-launch on boot.</li></ol><h3>Any browser-capable device</h3><ol><li>Open Chrome or Edge on the device.</li><li>Navigate to your screen player URL.</li><li>Press F11 for full screen. No installation needed.</li></ol><div class="tip">Your player URL is shown in the screen detail panel: Screens → [screen name] → Player URL.</div>`},
+  upload:{title:'How to upload content',cat:'Content',catId:'content',roles:'Property Admin · Content Manager',body:`<h3>Supported formats</h3><table><tr><th>Type</th><th>Formats</th><th>Notes</th></tr><tr><td>Images</td><td>JPG, PNG, WebP, SVG</td><td>Recommended: 1920x1080px</td></tr><tr><td>Video</td><td>MP4, WebM, MOV</td><td>Max 500MB per file</td></tr><tr><td>Web page</td><td>Any HTTPS URL</td><td>Must be publicly accessible</td></tr><tr><td>HTML5</td><td>.html files</td><td>Self-contained widgets</td></tr></table><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Content</strong> in the sidebar.</p></div><div class="step"><div class="step-n">2</div><p>Click <strong>Upload</strong> and select files, or drag and drop them in.</p></div><div class="step"><div class="step-n">3</div><p>Wait for the upload to complete.</p></div><div class="step"><div class="step-n">4</div><p>Content is now available to add to any playlist.</p></div></div>`},
+  playlist:{title:'Creating and assigning a playlist',cat:'Content',catId:'content',roles:'Property Admin · Content Manager',body:`<p>A playlist is an ordered loop of content items assigned to a screen or group.</p><h3>Create a playlist</h3><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Playlists</strong> and click <strong>New playlist</strong>.</p></div><div class="step"><div class="step-n">2</div><p>Give it a name — e.g. "Lobby Welcome" or "F&B Dinner Menu".</p></div><div class="step"><div class="step-n">3</div><p>Click <strong>Add item</strong>, select content, set duration for each item.</p></div><div class="step"><div class="step-n">4</div><p>Drag items to reorder. Click <strong>Save</strong>.</p></div></div><h3>Assign to a screen</h3><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Screens</strong> and click the screen.</p></div><div class="step"><div class="step-n">2</div><p>Choose your playlist from the <strong>Playlist</strong> dropdown.</p></div><div class="step"><div class="step-n">3</div><p>Screen updates within 30 seconds.</p></div></div><div class="tip">Assign the same playlist to multiple screens at once using screen groups.</div>`},
+  schedule:{title:'Scheduling content by time and day',cat:'Content',catId:'content',roles:'Property Admin · Content Manager · Scheduler',body:`<p>Schedules automatically switch playlists based on time of day or day of week.</p><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Schedule</strong> and click <strong>New schedule</strong>.</p></div><div class="step"><div class="step-n">2</div><p>Select a screen or group, then choose a playlist.</p></div><div class="step"><div class="step-n">3</div><p>Set start time, end time, and days of the week.</p></div><div class="step"><div class="step-n">4</div><p>Save. Activates automatically at the set time.</p></div></div><div class="tip">Schedules override the default playlist during their active window, then return to it when the window ends.</div>`},
+  templates:{title:'Using hospitality templates',cat:'Content',catId:'content',roles:'Property Admin · Content Manager',body:`<p>Pre-built templates for common hospitality use cases. Customise with your branding — no design skills needed.</p><h3>Available templates</h3><ul><li><strong>Hotel Welcome</strong> — Guest greeting with property name and tagline</li><li><strong>Daily Menu</strong> — F&B menu board with sections</li><li><strong>Today Events</strong> — Activities and events schedule</li><li><strong>Spa and Wellness</strong> — Treatment menu and offers</li><li><strong>Promotion</strong> — Offers and discounts</li><li><strong>Info Board</strong> — General information and wayfinding</li></ul><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Templates</strong> and click a template to preview.</p></div><div class="step"><div class="step-n">2</div><p>Select the <strong>Content</strong> tab to edit text fields.</p></div><div class="step"><div class="step-n">3</div><p>Switch to <strong>Branding</strong> to upload your logo and set accent colour.</p></div><div class="step"><div class="step-n">4</div><p>Click <strong>Save to content library</strong>. Now available to add to any playlist.</p></div></div>`},
+  invite:{title:'How to invite a team member',cat:'Team & Access',catId:'team',roles:'Property Admin only',body:`<p>Only Property Admins can invite team members. The invited person receives an email with a link to set up their account.</p><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Team</strong> and click <strong>Invite member</strong>.</p></div><div class="step"><div class="step-n">2</div><p>Enter their email and select their role.</p></div><div class="step"><div class="step-n">3</div><p>Click <strong>Send invite</strong>. They receive an email within minutes.</p></div><div class="step"><div class="step-n">4</div><p>Once they accept and set a password, they appear as active in your Team list.</p></div></div><div class="tip">Invitation links expire after 7 days. Resend from the Team page if needed.</div><div class="warn">Each email can only be linked to one property. Contact support if a member needs access to multiple properties.</div>`},
+  roles:{title:'Roles and what each one can do',cat:'Team & Access',catId:'team',roles:'Property Admin only',body:`<p>Choose the right role for each team member. Roles define exactly what people can see and do.</p><table><tr><th>Role</th><th>Who it is for</th><th>What they can do</th></tr><tr><td><strong>Property Admin</strong></td><td>Manager or owner</td><td>Full access — screens, content, team, settings, advertising, analytics, audit log</td></tr><tr><td><strong>Content Manager</strong></td><td>Marketing or creative</td><td>Upload content, create playlists, use templates. Cannot manage screens or team.</td></tr><tr><td><strong>Screen Operator</strong></td><td>AV / operations staff</td><td>Assign playlists to screens, monitor status. Cannot upload content or manage team.</td></tr><tr><td><strong>Broadcast Operator</strong></td><td>Front desk / duty manager</td><td>Send emergency broadcasts only.</td></tr><tr><td><strong>Scheduler</strong></td><td>Events or F&B coordinator</td><td>Create and manage schedules only.</td></tr><tr><td><strong>Analyst</strong></td><td>Revenue or ops analyst</td><td>View analytics, proof-of-play, and revenue data. Read-only.</td></tr><tr><td><strong>IT Manager</strong></td><td>IT / technical team</td><td>Manage screen hardware, pairing, and integrations.</td></tr></table><div class="tip">Customise individual permissions beyond role defaults from <strong>Permissions</strong> in the sidebar (Property Admin only).</div>`},
+  remove:{title:'Removing a member or changing their role',cat:'Team & Access',catId:'team',roles:'Property Admin only',body:`<div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Team</strong> in the sidebar.</p></div><div class="step"><div class="step-n">2</div><p>To change role: click the role badge next to their name and select a new role.</p></div><div class="step"><div class="step-n">3</div><p>To remove: click the menu and select <strong>Remove member</strong>. Access is revoked immediately.</p></div></div><div class="warn">Removing a member is immediate. They will be signed out within minutes.</div>`},
+  campaign:{title:'Setting up an ad campaign',cat:'Advertising & Analytics',catId:'advertising',roles:'Property Admin · Content Manager',body:`<div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Advertising</strong> and click <strong>New campaign</strong>.</p></div><div class="step"><div class="step-n">2</div><p>Fill in the advertiser details, campaign name, and dates.</p></div><div class="step"><div class="step-n">3</div><p>Upload the ad creative and set duration per play.</p></div><div class="step"><div class="step-n">4</div><p>Select screens and set frequency (plays per hour).</p></div><div class="step"><div class="step-n">5</div><p>Set CPM rate or flat fee, then activate.</p></div></div><div class="tip">Use the Quote Builder to send a proposal to the advertiser before they commit.</div>`},
+  quote:{title:'Sending an advertising quote',cat:'Advertising & Analytics',catId:'advertising',roles:'Property Admin',body:`<p>The Quote Builder generates a branded proposal your advertiser can view and accept via a unique link — no login needed on their end.</p><div class="steps"><div class="step"><div class="step-n">1</div><p>Go to <strong>Advertising → Quotes</strong> and click <strong>New quote</strong>.</p></div><div class="step"><div class="step-n">2</div><p>Enter the advertiser name and contact email.</p></div><div class="step"><div class="step-n">3</div><p>Set screens, duration, frequency, and pricing.</p></div><div class="step"><div class="step-n">4</div><p>Click <strong>Send quote</strong>. They get an email with a link to accept.</p></div><div class="step"><div class="step-n">5</div><p>You are notified when they accept. Then activate the campaign.</p></div></div>`},
+  analytics:{title:'What is in the Analytics page',cat:'Advertising & Analytics',catId:'advertising',roles:'Property Admin · Analyst',body:`<ul><li><strong>Screen uptime</strong> — Online/offline history per screen over a date range.</li><li><strong>Content plays</strong> — How many times each item has played, per screen.</li><li><strong>Proof of play</strong> — Timestamped log of every play, exportable as CSV.</li><li><strong>Revenue</strong> — Ad impression counts and revenue totals by campaign, screen, and date.</li></ul><div class="tip">Export any section as CSV using the download button in the top-right of each analytics view.</div>`},
+  broadcast:{title:'Sending an emergency broadcast',cat:'Advanced',catId:'advanced',roles:'Property Admin · Broadcast Operator',body:`<p>An emergency broadcast immediately overrides content on selected screens with your message. Use for safety notices, closures, or any urgent communication.</p><div class="steps"><div class="step"><div class="step-n">1</div><p>Click the red <strong>Emergency broadcast</strong> button in the top-right of the Dashboard.</p></div><div class="step"><div class="step-n">2</div><p>Select the target: all screens, a group, or individual screens.</p></div><div class="step"><div class="step-n">3</div><p>Type your message and choose a background colour and layout.</p></div><div class="step"><div class="step-n">4</div><p>Set an auto-stop time or leave on manual.</p></div><div class="step"><div class="step-n">5</div><p>Click <strong>Send</strong>. Screens update within seconds.</p></div></div><p>To stop: click <strong>Stop</strong> on the Dashboard. Screens return to normal immediately.</p><div class="warn">Always stop the broadcast when the situation is resolved — it keeps running until stopped.</div>`},
+  intelligence:{title:'Your health score and smart alerts',cat:'Advanced',catId:'advanced',roles:'Property Admin · Analyst',body:`<p>The Intelligence page gives your property a health score out of 100, based on screen uptime, content freshness, campaign activity, and schedule coverage.</p><h3>Health score factors</h3><ul><li>Are all screens online?</li><li>Do all screens have a playlist assigned?</li><li>Has content been updated in the last 30 days?</li><li>Are schedules set for key time slots?</li><li>Are ad campaigns running?</li></ul><p>Smart alerts are raised automatically for offline screens, unassigned screens, expiring campaigns, stale content, and security events. Each alert links directly to the relevant page.</p>`},
+  security:{title:'Security events and what they mean',cat:'Advanced',catId:'advanced',roles:'Property Admin only',body:`<p>The Security page logs events that may indicate unusual activity, raised automatically by monitoring rules.</p><ul><li><strong>Multiple failed logins</strong> — Repeated failed login attempts on an account.</li><li><strong>Login from new location</strong> — A login from an IP not seen before.</li><li><strong>Unusual content deletion</strong> — Many items deleted in a short window.</li><li><strong>New admin invite</strong> — A Property Admin invitation was sent.</li></ul><p>Mark events as resolved once reviewed. Unresolved events also appear in Intelligence alerts.</p>`},
+  audit:{title:'Using the Audit Log',cat:'Advanced',catId:'advanced',roles:'Property Admin · Analyst',body:`<p>The Audit Log records every action: content uploads, playlist changes, screen assignments, team invites, logins, broadcasts — with user email, IP address, and before/after diffs for changes.</p><h3>Filtering</h3><ul><li>Filter by action type — Created, Updated, Deleted, Login, etc.</li><li>Filter by user role.</li><li>Search by user email, entity name, or IP address.</li></ul><h3>Exporting</h3><p>Click <strong>Export CSV</strong> in the top-right to download a full export.</p><div class="tip">The audit log is permanent and cannot be edited or deleted.</div>`}
+};
+
+let curCat=null;
+
+function showHome(){
+  document.getElementById('home').classList.remove('hidden');
+  document.getElementById('catview').classList.remove('active');
+  document.getElementById('artview').classList.remove('active');
+  window.scrollTo(0,0);
+}
+
+
+function selectFlow(idx) {
+  for(let i=0;i<8;i++){
+    const step = document.getElementById('fs-'+i);
+    const panel = document.getElementById('fd-'+i);
+    if(step) step.removeAttribute('data-active');
+    if(panel) panel.style.display = 'none';
+  }
+  const activeStep = document.getElementById('fs-'+idx);
+  const activePanel = document.getElementById('fd-'+idx);
+  if(activeStep) activeStep.setAttribute('data-active','true');
+  if(activePanel) activePanel.style.display = 'block';
+}
+
+
+function toggleFlow(){
+  const body = document.getElementById('flow-body');
+  const chevron = document.getElementById('flow-chevron');
+  const label = document.getElementById('flow-toggle-label');
+  const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+  if(isOpen){
+    body.style.maxHeight = '0';
+    chevron.style.transform = 'rotate(0deg)';
+    label.textContent = 'Click to expand';
+  } else {
+    body.style.maxHeight = body.scrollHeight + 4000 + 'px';
+    chevron.style.transform = 'rotate(90deg)';
+    label.textContent = 'Click to collapse';
+  }
+}
+
+function openCat(id){
+  curCat=id;
+  const c=CATS[id];
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('artview').classList.remove('active');
+  document.getElementById('catview').classList.add('active');
+  document.getElementById('ctitle').textContent=c.title;
+  document.getElementById('cdesc').textContent=c.desc;
+  document.getElementById('cartlist').innerHTML=c.arts.map(aid=>{
+    const a=ARTS[aid];
+    return `<div class="art-item" onclick="openArt('${aid}')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div><div class="art-item-title">${a.title}</div><div class="art-item-meta">${a.roles}</div></div>
+      <svg class="art-item-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>`;
+  }).join('');
+  window.scrollTo(0,0);
+}
+
+function openArt(id){
+  const a=ARTS[id];
+  if(!curCat)curCat=a.catId;
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('catview').classList.remove('active');
+  document.getElementById('artview').classList.add('active');
+  document.getElementById('atitle').textContent=a.title;
+  document.getElementById('ameta').textContent=a.cat+' · Applies to: '+a.roles;
+  document.getElementById('abody').innerHTML=a.body;
+  document.getElementById('blabel').textContent=a.cat;
+  window.scrollTo(0,0);
+}
+
+function backToCat(){curCat?openCat(curCat):showHome()}
+
+function doSearch(q){
+  if(!q.trim()){showHome();return}
+  q=q.toLowerCase();
+  const m=Object.entries(ARTS).filter(([id,a])=>a.title.toLowerCase().includes(q)||a.cat.toLowerCase().includes(q)||a.body.toLowerCase().includes(q));
+  curCat=null;
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('artview').classList.remove('active');
+  document.getElementById('catview').classList.add('active');
+  document.getElementById('ctitle').textContent='Search: "'+q+'"';
+  document.getElementById('cdesc').textContent=m.length+' article'+(m.length!==1?'s':'')+' found';
+  document.getElementById('cartlist').innerHTML=m.length===0
+    ?'<p style="color:#6b7280;font-size:14px;padding:24px 0">No articles found. <a href="mailto:support@riserlumen.com" style="color:#00A4A4">Contact support</a>.</p>'
+    :m.map(([id,a])=>`<div class="art-item" onclick="openArt('${id}')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div><div class="art-item-title">${a.title}</div><div class="art-item-meta">${a.cat} · ${a.roles}</div></div>
+      <svg class="art-item-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>`).join('');
+}
+</script>
+</body>
+</html>
